@@ -38,16 +38,16 @@ class OrderItem(models.Model):
 
 
 class Order(models.Model):
-    created_at: datetime = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     total_price = models.FloatField()
     cart = models.OneToOneField(Cart, primary_key=True, on_delete=models.DO_NOTHING)
 
 class Payment(models.Model):
-    method: int = models.IntegerField()
-    created_at: datetime = models.DateTimeField(auto_now_add=True)
-    updated_at: datetime = models.DateTimeField(auto_now=True)
-    status: str = models.CharField(max_length=30)
-    price_in_cents: float = models.FloatField()
-    pedido: int = models.OneToOneField(Order, primary_key=True, on_delete=models.DO_NOTHING)    
+    method = models.IntegerField()
+    created_at  = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=30)
+    price_in_cents = models.FloatField()
+    order = models.OneToOneField(Order, primary_key=True, on_delete=models.DO_NOTHING)    
 
 
