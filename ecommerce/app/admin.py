@@ -7,7 +7,6 @@ class UserAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "price")
 
-    
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ("id", "product", "product_amount", "total_item_price")
 
@@ -18,3 +17,5 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Cart)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
+admin.site.register(Order)
+admin.site.register(Payment)

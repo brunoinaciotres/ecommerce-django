@@ -44,7 +44,7 @@ class Order(models.Model):
 
 class Payment(models.Model):
     method = models.IntegerField()
-    created_at  = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=30)
     price_in_cents = models.FloatField()
