@@ -8,16 +8,6 @@ class Cart(models.Model):
         return f"ID {self.id}"
     
 
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
-    adress = models.CharField(max_length=200)
-    cart = models.ForeignKey(Cart, blank=True, on_delete=models.DO_NOTHING, related_name="user")
-    def __str__(self):
-        return f"ID {self.id} - {self.name}"
-
-
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
