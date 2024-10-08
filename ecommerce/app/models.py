@@ -29,5 +29,13 @@ class Payment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     total_price = models.FloatField()
     order = models.OneToOneField(Order, primary_key=True, on_delete=models.DO_NOTHING)    
+    
+
+class Rating(models.Model):
+    content = models.CharField(max_length=300)
+    rating = models.IntegerField()
+    created_at: models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ratings")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="ratings")
 
 
