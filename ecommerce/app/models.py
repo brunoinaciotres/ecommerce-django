@@ -17,24 +17,35 @@ class Product(models.Model):
     stock = models.IntegerField()
 
     def __str__(self):
-        return f"ID {self.id} - {self.name}"
+        return f"{self.name} - R${self.price:.2f}"
 
 
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    total_price = models.FloatField()
-
+    
+    def get_total_price(self):
+        total = sum(item.product.price * item.product_amount for item in self.order_items.all())
+        print(self.order_items.all())
+        return total
+    
+    def __str__(self):
+        return f"Order {self.id}"
 
 class OrderItem(models.Model):
+    STATUS_CHOICES = [
+        ('aberto', 'Aberto'),
+        ('fechado', 'Fechado'),
+    ]
+
     product_amount = models.IntegerField()
     product_price = models.FloatField(null=True, blank=True)
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="order_items")
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items", null=True, blank=True)
 
     def __str__(self):
-        return f"Id {self.id} - {self.product.name} - x{self.product_amount} "
+        return f"ID {self.id} - {self.product.name} ( {self.product_amount}un )  "
 
 
 class Payment(models.Model):
