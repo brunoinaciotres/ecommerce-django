@@ -106,13 +106,27 @@
         </div>
         <div class="container w-100 dark-bg d-flex">
             <div class="options ">
-                <h2>Checkout</h2>
+                <h2 class="d-flex align-center gap-1">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="30" height="30" fill="url(#pattern0_91_2)" />
+                        <defs>
+                            <pattern id="pattern0_91_2" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_91_2" transform="scale(0.0111111)" />
+                            </pattern>
+                            <image id="image0_91_2" width="90" height="90"
+                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAADjUlEQVR4nO2cO2hUQRSGr4oJCj7QFIlam1jY+qhSCD6x02Atik1iE/NqBB99FBUUBbUVUdDCSu2MihprtREFH5iobNSsr0+GHTGFs5u7m7lnZnI+WLjFwvnn5+7cc+4/bJYpiqIoiqIUDrAQOAN8ws0YcBs4ACwoXmUCAGfJxwtgnbTuqADmAl/Jzxdgo7T+2WC04TWwSHoNKW8dUxmS1h8N5uEGnAI+1mH0M2n9yQDMA/ZUMXuNtMakAB45jD4krS0pgCMOo+9Ka0sK0zs7jP4BLJXWl1or+NZhdpe0vqQALjqMviytLSmAXQ6j35s7XlpfMgCLgbLD7A3S+pICuOMw+pi0tqQAeh1GP5HWlhRAu8Po38AqaX1JATx3mL1fWltSACccRs8mxoBhoMmn0ZulVxkQwz6NbgZK0isMhA/ejLZmX5NeYSCM+zZ6n/QKA+GGb6PbbEs32+nxarQ1+zFhUQYGgFb7MdeTnmt2SIYBUgz8R+M2j2a/9G6yXcR6wqLVoXML8M1DvfMhhAHBGO3R7K4QwgAJBmto3T6D28gvYHmRRu8mHCbNnlyQ2Q8LM3kaYYAERsvOGppnYhs5XpzLtcOAlM3uLM7h2mFA6GZvrdPsCfO+pziH/wnuaNCUSaDPTJsC2nfUsfXdLFrnVMHmgHq99IkJr2gfCm7sriL2pI/+twiAFTn1tkuKbSQMaBMTXtG+MofWV5JaGw0D+iPaOi5Iav0r+HoDD8N+8xOO4GEof84wsDCg7KG9M2N3S3GOhh8GlD310MWO3YGHAWWPg0rxY7cL4CjpvlTqzEJBOAwY8GhyyethmcjCgFaPL5H8pt31AFwivShLbuwOMAwY9BjO+k+78wIsAb4j03EM2jazzV5PRpN2JxIGhJ92JxQG1Iv82O0CWE0amO1oWRYywD3i52oWOsAm4uYnsDaLAeAc8XI4iwVgPnCF+DgNzMligspY3mv/9Cp0xoG9WcwALTZJMT32O/siPYR9+A1wC+jWP+RSFEVRFEWp91TTQeC+PQI7Ya97fB6Hlaorec7taZW+dtR8J5W6IlC5o6otduqim2OvKwaVn+106Y69rhjAgxwLHom9rhjkO9Zbir2uGORb8OfY64qBbh2FGd0j9DAUqSsGlTbLtFC1GJ3JA4VSdUWhMjiMCg0shdcVBWiyacaIfVCV7NGEbp93lFRdRVEURVEURVGULDT+AOJbaHa7C3IMAAAAAElFTkSuQmCC" />
+                        </defs>
+                    </svg>
+                    Checkout
+                </h2>
                 <div class="payment d-flex flex-column">
                     <h3 for="card">Definir método de pagamento</h3>
-                    <button id="card" placeholder="Adicionar cartão" class="card-input" type="text">
+                    <button id="card" onclick="openCardModal()" placeholder="Adicionar cartão" class="card-input"
+                        type="text">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0      0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                             <path
                                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                         </svg>
@@ -139,4 +153,77 @@
     </div>
 
 </section>
+<div class="add-card-modal">
+    <div class="backdrop"></div>
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <h3 class="color-blue">Adicionar Cartão</h3>
+                <button class="fill-card-data">Preencher</button>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" onclick="closeCardModal()" class="close-card-modal" width="16"
+                height="16" fill="#fff" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex gap-3">
+                <div class="input-group">
+                    <label for="card-number">Número Cartão</label>
+                    <input id="card-number" class="card-input" placeholder="xxxx xxxx xxxx xxxx" type="text">
+                </div>
+                <div class="input-group">
+                    <label for="card-number">Nome Titular</label>
+                    <input id="card-number" class="card-input" placeholder="Nome impresso no cartão" type="text">
+                </div>
+            </div>
+           
+            <div class="d-flex gap-3">
+                <div class="input-group">
+                    <label for="card-cvc">CVC</label>
+                    <input id="card-cvc" class="card-input" placeholder="000" type="text">
+                </div>
+                <div class="input-group">
+                    <label for="card-val">Validade</label>
+                    <input id="card-val" class="card-input" placeholder="00/00" type="text">
+                </div>
+            </div>
+            
+        </div>
+        <div class="visual-card-bar"></div>
+    </div>
+    <button class="add-payment-button">Adicionar método de pagamento</button>
+</div>
+<script>
+
+    const backdropModal = document.querySelector(".backdrop")
+    const addCardModal = document.querySelector(".add-card-modal")
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.key === 'Esc') {
+            if (addCardModal.style.display == "none") {
+                console.log('retornando')
+                return
+            }
+            closeCardModal();
+        }
+    });
+
+    backdropModal.addEventListener("click", () => {
+        addCardModal.style.display = "none"
+    })
+    function openCardModal() {
+        addCardModal.style.display = " flex"
+    }
+
+    function closeCardModal() {
+        addCardModal.style.display = "none"
+    }
+
+
+
+
+
+</script>
 {%endblock%}
