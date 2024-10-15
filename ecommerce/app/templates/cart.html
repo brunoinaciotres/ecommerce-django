@@ -1,88 +1,142 @@
 {% extends "layout.html" %}
 
 {%block body%}
-
+<div class="title box-shadow d-flex align-center gap-1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-cart-fill"
+        viewBox="0 0 16 16">
+        <path
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+    </svg>
+    <h2>Carrinho</h2>
+</div>
 <section>
-    <div class="title color-blue box-shadow">
-        <h2>Carrinho</h2>
+    <div class="d-flex justify-between main-content">
+        <div class="container d-flex">
+            <table class="cart-table">
+                <thead>
+                    <tr class="cart-table-tr head">
+                        <th class="align-left">Item</th>
+                        <th>Quantidade</th>
+                        <th>Total (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cart-table-tr">
+                        <td class="align-left item-name-td">
+                            <img class="cart-img" src="../static/i5-12400f.png" alt="">
+                            Intel Core i512400F
+                        </td>
+                        <td>
+                            <span class="counter">
+                                <span class="counter-btn decrease">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-dash" viewBox="0 0 16 16">
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                                    </svg>
+                                </span>
+                                2
+                                <span class="counter-btn increase">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                                    </svg>
+                                </span>
+                            </span>
+                        </td>
+                        <td>1354,20</td>
+                    </tr>
+                    <tr class="cart-table-tr">
+                        <td class="align-left item-name-td">
+                            <img class="cart-img" src="../static/i5-12400f.png" alt="">
+                            Intel Core i512400F
+                        </td>
+                        <td>
+                            <span class="counter">
+                                <span class="counter-btn decrease">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-dash" viewBox="0 0 16 16">
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                                    </svg>
+                                </span>
+                                2
+                                <span class="counter-btn increase">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                                    </svg>
+                                </span>
+                            </span>
+                        </td>
+                        <td>1354,20</td>
+                    </tr>
+                    <tr class="cart-table-tr">
+                        <td class="align-left item-name-td">
+                            <img class="cart-img" src="../static/i5-12400f.png" alt="">
+                            Intel Core i512400F
+                        </td>
+                        <td>
+                            <span class="counter">
+                                <span class="counter-btn decrease">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-dash" viewBox="0 0 16 16">
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                                    </svg>
+                                </span>
+                                2
+                                <span class="counter-btn increase">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                                    </svg>
+                                </span>
+                            </span>
+                        </td>
+                        <td>1354,20</td>
+                    </tr>
+                    <tr class="cart-table-tr bottom">
+                        <td class="align-left">Total</td>
+                        <td></td>
+                        <td>3097,98</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container w-100 dark-bg d-flex">
+            <div class="options ">
+                <h2>Checkout</h2>
+                <div class="payment d-flex flex-column">
+                    <h3 for="card">Definir método de pagamento</h3>
+                    <button id="card" placeholder="Adicionar cartão" class="card-input" type="text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                        Adicionar Cartão
+                    </button>
+                </div>
+                <div class="adress d-flex flex-column align-start">
+                    <h3 for="card">Endereço de Entrega</h3>
+                    <div class="adress-text">Rua das Flores Amarelas de Verão, 145/541 - Downtown, London</div>
+                </div>
+                <div class="buy">
+                    <button class="buy-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-lock" viewBox="0 0 16 16">
+                            <path
+                                d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                        </svg>
+                        Realizar Compra
+                    </button>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <table class="cart-table">
-        <thead>
-            <tr class="cart-table-tr head">
-                <th class="align-left">Item</th>
-                <th>Quantidade</th>
-                <th>Total (R$)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="cart-table-tr">
-                <td class="align-left">Intel Core i512400F</td>
-                <td>
-                    <span class="counter">
-                        <span class="counter-btn decrease">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-dash" viewBox="0 0 16 16">
-                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                            </svg>
-                        </span>
-                        2
-                        <span class="counter-btn increase">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                            </svg>
-                        </span>
-                    </span>
-                </td>
-                <td>1354,20</td>
-            </tr>
-            <tr class="cart-table-tr">
-                <td class="align-left">Intel Core i512400F</td>
-                <td>
-                    <span class="counter">
-                        <span class="counter-btn decrease">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-dash" viewBox="0 0 16 16">
-                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                            </svg>
-                        </span>
-                        2
-                        <span class="counter-btn increase">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                            </svg>
-                        </span>
-                    </span>
-                </td>
-                <td>1354,20</td>
-            </tr>
-            <tr class="cart-table-tr">
-                <td class="align-left">Intel Core i512400F</td>
-                <td>
-                    <span class="counter">
-                        <span class="counter-btn decrease">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-dash" viewBox="0 0 16 16">
-                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                            </svg>
-                        </span>
-                        2
-                        <span class="counter-btn increase">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                            </svg>
-                        </span>
-                    </span>
-                </td>
-                <td>1354,20</td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 {%endblock%}
