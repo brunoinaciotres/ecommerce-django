@@ -1,0 +1,54 @@
+{% load static %}
+<div id="add-adress-modal" class="modal-container">
+    <div id="backdrop-add-adress-modal" class="backdrop"></div>
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <h3 class="color-blue">Adicionar Endereço</h3>
+                <button class="fill-modal-data" onclick="fillAdressData()">Preencher</button>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" onclick="closeAddAdressModal()" class="close-card-modal" width="16"
+                height="16" fill="#fff" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+        </div>
+        <div class="modal-body">
+            <form action="" autocomplete="off">
+                <div class="d-flex gap-3">
+                    <div class="input-group">
+                        <label for="adress-street">Rua</label>
+                        <input id="adress-street" class="card-input" type="text">
+                    </div>
+                    <div class="input-group">
+                        <label for="adress-number">Número</label>
+                        <input id="adress-number" class="card-input" type="text">
+                    </div>
+                </div>
+                <div class="d-flex gap-3">
+                    <div class="input-group">
+                        <label for="adress-complement">Complemento</label>
+                        <input id="adress-complement" class="card-input" type="text">
+                    </div>
+                    <div class="input-group">
+                        <label for="adress-neighborhood">Bairro</label>
+                        <input id="adress-neighborhood" class="card-input" type="text">
+                    </div>
+                </div>
+                <div class="d-flex gap-3">
+                    <div class="input-group">
+                        <label for="adress-state">Estado</label>
+                        <input id="adress-state" class="card-input" type="text">
+                    </div>
+                    <div class="input-group">
+                        <label for="adress-city">Cidade</label>
+                        <input id="adress-city" class="card-input" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button id="add-adress-button" class="confirm-modal-button">Adicionar endereço</button>
+</div>
+
+<script src="{%static 'app/js/addAdressModal.js' %}"></script>

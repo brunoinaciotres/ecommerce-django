@@ -1,0 +1,64 @@
+{% load static %}
+<div id="add-card-modal" class="modal-container">
+    <div id="backdrop-add-card-modal" class="backdrop"></div>
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <h3 class="color-blue">Adicionar Cartão</h3>
+                <button class="fill-modal-data" onclick="fillCardData()">Preencher</button>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" onclick="closeAddCardModal()" class="close-card-modal" width="16"
+                height="16" fill="#fff" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+        </div>
+        <div class="modal-body">
+            <form action="">
+                <div class="d-flex gap-3">
+                    <div class="input-group">
+                        <label for="card-number">Número Cartão</label>
+                        <input id="card-number" maxlength="19" class="card-input" placeholder="xxxx xxxx xxxx xxxx"
+                            type="text">
+                    </div>
+                    <div class="input-group">
+                        <label for="card-name">Nome Titular</label>
+                        <input id="card-name" class="card-input" placeholder="Nome impresso no cartão" type="text">
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <div class="input-group">
+                        <label for="card-cvc">CVC</label>
+                        <input id="card-cvc" class="card-input" placeholder="000" type="text">
+                    </div>
+                    <div class="input-group">
+                        <label for="card-val">Validade</label>
+                        <input id="card-val" class="card-input" placeholder="00/00" type="text">
+                    </div>
+                </div>
+                <div class="d-flex gap-3">
+                    <div class="d-flex w-100 gap-4">
+                        <div class="d-flex gap-2">
+                            <label class="label-payment-method selected-radio" for="credit">Crédito</label>
+                            <input class="radio-payment-method" checked value="credit" type="radio" id="credit"
+                                name="payment">
+                        </div>
+                        <div class="d-flex gap-2">
+                            <label class="label-payment-method" for="debit">Débito</label>
+                            <input class="radio-payment-method" value="debit" type="radio" id="debit" name="payment">
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+
+
+        <div class="visual-card-bar"></div>
+    </div>
+    <button id="add-payment-button" class="confirm-modal-button">Adicionar método de pagamento</button>
+</div>
+
+<script src="{% static 'app/js/addCardModal.js' %}"></script>

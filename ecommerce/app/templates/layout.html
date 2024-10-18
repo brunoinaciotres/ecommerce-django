@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,15 +8,16 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="{% static 'app/css/main.css' %}">
 </head>
 
 
 <body>
     <header class="box-shadow z-index-3">
-        
+
         <nav>
             <ul>
                 <li>
@@ -23,24 +25,24 @@
                         <h1>E-Commerce</h1>
                     </a>
                 </li>
-                
+
                 <li>
                     <div class="how-many-cart-itens">
                         <span class="value">7</span>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4da8ff" class="bi bi-cart-fill"
-                        viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4da8ff"
+                        class="bi bi-cart-fill" viewBox="0 0 16 16">
                         <path
                             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                     </svg>
                     <a class="cart_link" href="/cart">Carrinho</a>
-    
+
                 </li>
             </ul>
-        </nav>    
+        </nav>
     </header>
-   {% block body %}
-   {%endblock%}
+    {% block body %}
+    {%endblock%}
 </body>
 
 </html>
