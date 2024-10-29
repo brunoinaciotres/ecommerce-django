@@ -57,7 +57,6 @@ cardNumberInput.addEventListener('input', (event) => {
     // Adiciona os traços a cada 4 dígitos, sem deixar espaços ou traços adicionais
     valor = valor.match(/.{1,4}/g)?.join('-') || '';
 
-    // Atualiza o valor do input com a máscara aplicada
     event.target.value = valor;
 });
 

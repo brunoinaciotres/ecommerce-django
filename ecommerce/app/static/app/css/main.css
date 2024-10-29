@@ -137,6 +137,10 @@ h2 {
 
 }
 
+.pointer-events-none {
+    pointer-events: none;
+}
+
 .how-many-cart-itens {
     border-radius: 50%;
     width: 20px;
@@ -214,7 +218,7 @@ section#products .product-list .product .add-button span {
     position: absolute;
     transition: all ease .3s;
     border-radius: 50%;
-
+    pointer-events: none;
 }
 
 .add-button:hover .effect-obj {

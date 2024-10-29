@@ -27,7 +27,7 @@ class Order(models.Model):
         total = sum(item.product.price * item.product_amount for item in self.order_items.all())
         print(self.order_items.all())
         return total
-    
+
     def __str__(self):
         return f"Order {self.id}"
 
@@ -41,7 +41,7 @@ class OrderItem(models.Model):
     product_price = models.FloatField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="order_items")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="order_items", blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items", null=True, blank=True)
 
     def __str__(self):
@@ -58,7 +58,7 @@ class Payment(models.Model):
 class Rating(models.Model):
     content = models.CharField(max_length=300)
     rating = models.IntegerField()
-    created_at: models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ratings")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="ratings")
 

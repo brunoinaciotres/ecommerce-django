@@ -19,87 +19,71 @@
             <h2>Processadores</h2>
         </div>
         <ul class="product-list">
+            {% for product in products %}
+
             <li class="product">
                 <div class="img-container ">
                     <img src="../static/i5-12400f.png" alt="">
 
                 </div>
-                <div class="add-button">
+                <div class="add-button" id={{product.id}} onclick="addOrderItem(event)">
                     <div class="effect-obj"></div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15 " height="15" fill="#fff" class="bi bi-cart-fill"
-                        viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15 " height="15" fill="#fff"
+                        class="bi bi-cart-fill pointer-events-none" viewBox="0 0 16 16">
                         <path
                             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                     </svg>
-                    <span class="z-index-2">Adicionar</span>
+                    <span class="z-index-2 pointer-events-none">Adicionar</span>
 
                 </div>
-                <p class="p-data">
-                    <span>Intel Core i5 12400F</span> <br>
-                    <span class="fw-l">R$798,00</span>
+                <p class="p-data ">
+                    <span>{{product.name}}</span> <br>
+                    <span class="fw-l">R${{product.price}}</span>
                 </p>
             </li>
-            <li class="product">
-                <div class="img-container ">
-                    <img src="../static/i5-12400f.png" alt="">
 
-                </div>
-                <div class="add-button">
-                    <div class="effect-obj"></div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15 " height="15" fill="#fff" class="bi bi-cart-fill"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                    </svg>
-                    <span class="z-index-2">Adicionar</span>
-
-                </div>
-                <p class="p-data">
-                    <span>Intel Core i5 12400F</span> <br>
-                    <span class="fw-l">R$798,00</span>
-                </p>
-            </li>
-            <li class="product">
-                <div class="img-container ">
-                    <img src="../static/i5-12400f.png" alt="">
-
-                </div>
-                <div class="add-button">
-                    <div class="effect-obj"></div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15 " height="15" fill="#fff" class="bi bi-cart-fill"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                    </svg>
-                    <span class="z-index-2">Adicionar</span>
-
-                </div>
-                <p class="p-data">
-                    <span>Intel Core i5 12400F</span> <br>
-                    <span class="fw-l">R$798,00</span>
-                </p>
-            </li>
-            <li class="product">
-                <div class="img-container ">
-                    <img src="../static/i5-12400f.png" alt="">
-
-                </div>
-                <div class="add-button">
-                    <div class="effect-obj"></div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15 " height="15" fill="#fff" class="bi bi-cart-fill"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                    </svg>
-                    <span class="z-index-2">Adicionar</span>
-
-                </div>
-                <p class="p-data">
-                    <span>Intel Core i5 12400F</span> <br>
-                    <span class="fw-l">R$798,00</span>
-                </p>
-            </li>
+            {% endfor %}
         </ul>
     </section>
 </main>
+
+<script>
+    async function addOrderItem(event) {
+        productId = event.target.id
+        const itemAdded = await addToCartFetch(productId)
+        console.log(itemAdded)
+        updateCartItemsCount(itemAdded)
+        
+    }
+
+    async function addToCartFetch(productId) {
+        const res = await fetch('/add_to_cart', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify({
+                    "product_id" : productId
+                })
+            
+        })
+        const data = await res.json()
+        return data
+    }
+
+    async function getUserSessionId() {
+        const response = await fetch("/get_user_session", {
+            method: "GET",
+            mode: "cors",
+        });
+        const data = await response.json();
+        return data;
+
+    }
+
+    function updateCartItemsCount(item){
+        let totalItemsCount = item.total_items_count
+        const cartItemCounterElement = document.querySelector("#how-many-cart-itens-value")
+        cartItemCounterElement.innerText = totalItemsCount
+
+    }
+</script>
 {%endblock%}
