@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-
+{%load static%}
 {%block body%}
 
 <main>
@@ -47,26 +47,15 @@
     </section>
 </main>
 
+<script src="{% static 'app/js/cart.js' %}"></script>
+
 <script>
     async function addOrderItem(event) {
-        productId = event.target.id
+        let productId = event.target.id
         const itemAdded = await addToCartFetch(productId)
         console.log(itemAdded)
-        updateCartItemsCount(itemAdded)
-        
-    }
 
-    async function addToCartFetch(productId) {
-        const res = await fetch('/add_to_cart', {
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify({
-                    "product_id" : productId
-                })
-            
-        })
-        const data = await res.json()
-        return data
+        
     }
 
     async function getUserSessionId() {
@@ -79,11 +68,6 @@
 
     }
 
-    function updateCartItemsCount(item){
-        let totalItemsCount = item.total_items_count
-        const cartItemCounterElement = document.querySelector("#how-many-cart-itens-value")
-        cartItemCounterElement.innerText = totalItemsCount
-
-    }
+   
 </script>
 {%endblock%}

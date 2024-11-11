@@ -104,6 +104,10 @@ section {
     justify-content: space-between;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -128,6 +132,10 @@ section {
     color: #4DA8FF
 }
 
+.color-white {
+    color: #fff;
+}
+
 .dark-bg {
     background-color: #383838;
 }
@@ -143,15 +151,15 @@ h2 {
 
 .how-many-cart-itens {
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     background: #fff;
     border: 3px solid #000;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: -2px;
+    top: -10px;
     left: 12px;
 }
 
@@ -278,6 +286,7 @@ section#products .product-list .product .p-data {
 
 }
 
+
 .cart-table-tr.head {
     border-bottom: 1px solid #7b7b7b50;
 }
@@ -307,8 +316,11 @@ section#products .product-list .product .p-data {
     color: #fff;
     margin-bottom: 1.5rem;
     font-weight: 300;
-
+    
 }
+
+
+
 
 .item-name-td {
     display: flex;
@@ -322,9 +334,12 @@ section#products .product-list .product .p-data {
 
 .counter {
     background-color: #272727;
-    padding: 6px 10px;
+    width:35px;
     border-radius: 5px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .counter-btn {
@@ -596,6 +611,10 @@ input:focus {
 .edit-field-button:hover {
     color: #fff;
 
+}
+
+.counter-btn.decrease svg, .counter-btn.increase svg {
+    pointer-events: none;
 }
 
 

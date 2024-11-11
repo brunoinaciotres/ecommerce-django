@@ -21,21 +21,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for item in order_items %}
                     <tr class="cart-table-tr">
                         <td class="align-left item-name-td">
                             <img class="cart-img" src="../static/i5-12400f.png" alt="">
-                            Intel Core i512400F
+                            {{item.item.product.name}}
                         </td>
-                        <td>
-                            <span class="counter">
-                                <span class="counter-btn decrease">
+                        <td class="d-flex justify-center">
+                            <span class="counter"  >
+                                <span class="counter-btn decrease"  onclick="decreaseProductAmount(event)" id="order-item-decrease-{{ item.item.product.id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-dash" viewBox="0 0 16 16">
                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
                                     </svg>
                                 </span>
-                                2
-                                <span class="counter-btn increase">
+                                <span id="product-amount-counter-{{ item.item.product.id}}">
+                                    {{item.item.product_amount}}
+                                </span>
+                                <span class="counter-btn increase" onclick="increaseProductAmount(event,)" id="order-item-increase-{{ item.item.product.id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-plus" viewBox="0 0 16 16">
                                         <path
@@ -44,62 +47,19 @@
                                 </span>
                             </span>
                         </td>
-                        <td>1354,20</td>
+                        <td data-individual-product-price="{{item.item.product_price}}" id="order-item-total-price-{{item.item.product.id}}">
+                            {{item.item_total_price|floatformat:2}}
+                        </td>
                     </tr>
-                    <tr class="cart-table-tr">
-                        <td class="align-left item-name-td">
-                            <img class="cart-img" src="../static/i5-12400f.png" alt="">
-                            Intel Core i512400F
-                        </td>
-                        <td>
-                            <span class="counter">
-                                <span class="counter-btn decrease">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-dash" viewBox="0 0 16 16">
-                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                                    </svg>
-                                </span>
-                                2
-                                <span class="counter-btn increase">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                                    </svg>
-                                </span>
-                            </span>
-                        </td>
-                        <td>1354,20</td>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center color-white">Seu carrinho está vazio.</td>
                     </tr>
-                    <tr class="cart-table-tr">
-                        <td class="align-left item-name-td">
-                            <img class="cart-img" src="../static/i5-12400f.png" alt="">
-                            Intel Core i512400F
-                        </td>
-                        <td>
-                            <span class="counter">
-                                <span class="counter-btn decrease">     
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-dash" viewBox="0 0 16 16">
-                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                                    </svg>
-                                </span>
-                                2
-                                <span class="counter-btn increase">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                                    </svg>
-                                </span>
-                            </span>
-                        </td>
-                        <td>1354,20</td>
-                    </tr>
+                    {%endfor%}
                     <tr class="cart-table-tr bottom">
                         <td class="align-left">Total</td>
                         <td></td>
-                        <td>3097,98</td>
+                        <td id="cart-total-price">{{cart_total|floatformat:2 }}</td>
                     </tr>
                 </tbody>
             </table>

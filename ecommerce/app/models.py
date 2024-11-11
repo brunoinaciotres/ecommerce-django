@@ -43,7 +43,8 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="order_items", blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items", null=True, blank=True)
-
+    user_session = models.CharField(max_length=200)
+    
     def __str__(self):
         return f"ID {self.id} - {self.product.name} ( {self.product_amount}un )  "
 
