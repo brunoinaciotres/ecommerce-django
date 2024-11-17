@@ -67,14 +67,25 @@ function updateCartItemsCountHeader(item){
 
 }
 
-// Increase and Decrease Product Amount Buttons 
-
-async function increaseProductAmount(event){
+// Increase and decrease Product Amount buttons innertext
+function getOrderItemTotalPriceElementId(event){
     let orderItemElementId = event.target.id
-
-    let dividedString = orderItemElementId.split("order-item-increase-");
-
+    let dividedString
+    if (orderItemElementId.startsWith("order-item-decrease-")){
+        dividedString = orderItemElementId.split("order-item-decrease-")
+    }
+    if (orderItemElementId.startsWith("order-item-increase-")){
+        dividedString = orderItemElementId.split("order-item-increase-")
+    }
+   
     let productIntId = dividedString[1]
+
+    console.log("getOrderItemTotalPriceElementId(event), PRODUCT INT ID = " + productIntId)
+    return productIntId
+}
+async function increaseProductAmount(event){
+    let productIntId = getOrderItemTotalPriceElementId(event)
+
     let totalOrderItemPriceElement = document.querySelector(`#order-item-total-price-${productIntId}`)
 
     const itemIncreased = await addToCartFetch(productIntId)
@@ -95,7 +106,24 @@ async function increaseProductAmount(event){
     
 }
 
-function decreaseProductAmount(event, newAmount){
+async function decreaseProductAmount(event, newAmount){
+    let productIntId = getOrderItemTotalPriceElementId(event)
+    console.log(productIntId)
+    let totalOrderItemPriceElement = document.querySelector(`#order-item-total-price-${productIntId}`)
+
+    const itemDecreased = await removeFromCartFetch(productIntId)
+
+    if (itemDecreased.order_items) {
+        itemDecreased.order_items.forEach(item => {
+            if (item.product_id == productIntId){
+                let newCounterValue = item.product_amount
+                let productPrice = totalOrderItemPriceElement.dataset.individualProductPrice;
+                console.log(productPrice)
+                changeProductAmountCounterValue(newCounterValue, productIntId)
+                changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId )
+            }
+        })
+    }
     
 }
 
@@ -151,6 +179,22 @@ async function addToCartFetch(productId) {
         
     })
     const item = await res.json()
+    console.log("responde fromremove-cart-fetch: " + JSON.stringify(item))
+    updateCartItemsCountHeader(item)
+    return item
+}
+
+async function removeFromCartFetch(productId){
+    const res = await fetch('/remove_from_cart', {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify({
+                "product_id" : productId
+            })
+        
+    })
+    const item = await res.json()
+    console.log("responde fromremove-cart-fetch: " + JSON.stringify(item))
     updateCartItemsCountHeader(item)
     return item
 }

@@ -74,26 +74,37 @@ def remove_from_cart(request):
             product_id = body.get('product_id')
             product = Product.objects.get(id=product_id)
             session_id = request.session.session_key
+            
             order_item = OrderItem.objects.get(
                 product=product,
                 status='aberto',
                 user_session = session_id,
             )
             
+            if order_item.product_amount == 0:
+                return JsonResponse({
+                    'msg':'Este produto não está mais no seu carrinho. Quantidade ja é zero',
+                    'total_items_count': request.session['total_items_count']
+                    }, status=200)
+            
             order_item.product_amount -= 1
             
-            order_item_data = {
-                'id': order_item.id,
-                'product_id': order_item.product.id,
-                'quantity': order_item.product_amount,
-                'total_price': order_item.product_amount * order_item.product.price,
-            }
              
             order_item.save()
             
-           
+            for item in request.session['order_items']:
+                if order_item.id == item['order_item_id']:
+                    item['product_amount'] = order_item.product_amount
+                    break
             
-            return JsonResponse({'OrderItemFound': order_item_data}, status=200)
+            total_items_count = sum(item['product_amount'] for item in request.session['order_items'])
+            request.session['total_items_count'] = total_items_count
+            
+            return JsonResponse({
+                'msg': 'Unidade removida do carrinho',
+                'order_items': request.session['order_items'],
+                'total_items_count': request.session['total_items_count']
+                }, status=200)
             
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
