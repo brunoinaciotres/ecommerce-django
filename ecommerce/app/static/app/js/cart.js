@@ -162,7 +162,7 @@ function changeOrderItemTotalPrice(productPrice, productAmount, productId, isDec
         changeCartTotalPrice(cleanedProductPriceNumber, isDecrement)
         return
     }
-    
+
     changeCartTotalPrice(cleanedProductPriceNumber)
     
 }
@@ -195,7 +195,6 @@ async function addToCartFetch(productId) {
         
     })
     const item = await res.json()
-    console.log("responde fromremove-cart-fetch: " + JSON.stringify(item))
     updateCartItemsCountHeader(item)
     return item
 }
@@ -210,7 +209,6 @@ async function removeFromCartFetch(productId){
         
     })
     const item = await res.json()
-    console.log("responde fromremove-cart-fetch: " + JSON.stringify(item))
     updateCartItemsCountHeader(item)
     return item
 }

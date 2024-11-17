@@ -55,6 +55,25 @@ class Payment(models.Model):
     total_price = models.FloatField()
     order = models.ForeignKey(Order, on_delete=models.DO_NOTHING)
 
+class User_Payment_Card(models.Model):
+    method = models.CharField(max_length=30, null=False)
+    card_number = models.CharField(max_length=20,null=False)
+    owner_name = models.CharField(max_length=200,null=False)
+    cvc = models.CharField(max_length=3,null=False)
+    expires_at = models.DateField(null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,  blank=True, null=True)
+    user_session = models.CharField(max_length=200)
+    
+class User_Adress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,  blank=True, null=True)
+    user_session = models.CharField(max_length=200)
+    street = models.CharField(max_length=200, null=False, blank=False)
+    number = models.CharField(max_length=200, null=False, blank=False)
+    complement = models.CharField(max_length=200, null=True, blank=True)
+    district = models.CharField(max_length=200, null=False, blank=False)
+    state = models.CharField(max_length=150, null=False, blank=False)
+    city = models.CharField(max_length=150, null=False, blank=False)
+    
 
 class Rating(models.Model):
     content = models.CharField(max_length=300)

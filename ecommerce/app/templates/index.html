@@ -47,15 +47,25 @@
     </section>
 </main>
 
+<div class="bottom-warn d-flex justify-center align-center">
+    <p class="bottom-warn-text color-white">
+        Item adicionado ao carrinho
+    </p>
+</div>
 <script src="{% static 'app/js/cart.js' %}"></script>
 
 <script>
     async function addOrderItem(event) {
         let productId = event.target.id
-        const itemAdded = await addToCartFetch(productId)
-        console.log(itemAdded)
-
+        await addToCartFetch(productId)
         
+        const itemAddedWarn = document.querySelector(".bottom-warn")
+        itemAddedWarn.style.opacity = 1
+        setTimeout(() => {
+            itemAddedWarn.style.opacity = 0
+        }, 1500)
+        
+
     }
 
 

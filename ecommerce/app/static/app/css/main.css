@@ -245,6 +245,19 @@ section#products .product-list .product .add-button span {
     top: -2px;
 }
 
+.bottom-warn {
+    position: fixed;
+    bottom:1rem;
+    padding: 1rem 2rem;
+    left:50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    background-color: #28a745;
+    border-radius: 10px;
+    height: 50px;
+    transition: all ease .5s;
+}
+
 .confirm-modal-button {
     background: #4DA8FF;
     padding: 1rem 2rem;
@@ -257,6 +270,10 @@ section#products .product-list .product .add-button span {
     cursor: pointer;
     transition: all ease .2s;
     width: 500px;
+}
+
+.confirm-modal-button:hover {
+    background: #3887d1;
 }
 
 .add-payment-button:hover {
