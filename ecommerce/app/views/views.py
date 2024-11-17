@@ -32,4 +32,5 @@ def cart(request):
         
     })
 
-
+def after_purchase(request):
+    return render(request, "after_purchase.html")

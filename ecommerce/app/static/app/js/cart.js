@@ -9,9 +9,11 @@ const addCardIcon = document.querySelector("#add-card-icon")
 const addCardText = document.querySelector("#add-card-text")
 const addAdressIcon = document.querySelector("#add-adress-icon")
 const addAdressText = document.querySelector("#add-adress-text")
+const creditOrDebitInputSign = document.querySelector(".credit-or-debit")
 
 document.addEventListener("cardAdded", () => {
     const cardData = event.detail
+ 
     styleCardInputCheckout(cardData)
     toAbleBuyBtn()
 })
@@ -48,6 +50,9 @@ function styleCardInputCheckout(cardData) {
     cardInputCheckout.style.padding = ".8rem 1rem"
     cardInputCheckout.style.backgroundColor = "#4f4f4f"
     editCardButton.style.display = "block"
+    creditOrDebitInputSign.innerText = cardData.paymentMethod
+    creditOrDebitInputSign.classList.remove("d-none")
+
 }
 
 function styleAdressInputCheckout(adress) {
@@ -67,7 +72,12 @@ function updateCartItemsCountHeader(item){
 
 }
 
-// Increase and decrease Product Amount buttons innertext
+function toBuy(){
+    window.location.replace("/after_purchase");
+
+}
+
+// Increase and decrease Product Amount buttons values
 function getOrderItemTotalPriceElementId(event){
     let orderItemElementId = event.target.id
     let dividedString
@@ -120,7 +130,9 @@ async function decreaseProductAmount(event, newAmount){
                 let productPrice = totalOrderItemPriceElement.dataset.individualProductPrice;
                 console.log(productPrice)
                 changeProductAmountCounterValue(newCounterValue, productIntId)
-                changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId )
+
+                let isDecrement = true
+                changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId, isDecrement )
             }
         })
     }
@@ -135,7 +147,7 @@ function changeProductAmountCounterValue(newValue, productId,){
     counter.innerText = newValue
 }
 
-function changeOrderItemTotalPrice(productPrice, productAmount, productId){
+function changeOrderItemTotalPrice(productPrice, productAmount, productId, isDecrement){
     let productAmountNumber = Number(productAmount)
     let cleanedProductPriceNumber = Number(productPrice.replace(',', '.').trim())
     let newValue = productAmountNumber * cleanedProductPriceNumber
@@ -146,17 +158,21 @@ function changeOrderItemTotalPrice(productPrice, productAmount, productId){
 
     const orderItemTotalPriceElement = document.querySelector(`#order-item-total-price-${productId}`)
     orderItemTotalPriceElement.innerText = formattedValue
-   
+    if (isDecrement){
+        changeCartTotalPrice(cleanedProductPriceNumber, isDecrement)
+        return
+    }
+    
     changeCartTotalPrice(cleanedProductPriceNumber)
     
 }
 
-function changeCartTotalPrice(valueToIncrement){
+function changeCartTotalPrice(valueToIncrement, isDecrement){
+    console.log(valueToIncrement)
     const cartTotalPriceElement = document.querySelector("#cart-total-price")
     const cartTotalPriceValue = Number(cartTotalPriceElement.innerText.replace(',', '.').trim())
-    console.log("total_price_curr" + cartTotalPriceElement)
-
-    let sum = cartTotalPriceValue + valueToIncrement
+    
+    let sum = isDecrement ? cartTotalPriceValue - valueToIncrement : cartTotalPriceValue + valueToIncrement
     console.log("typeof sum = " + typeof sum)
 
     let formattedValue = sum.toLocaleString('pt-BR', {

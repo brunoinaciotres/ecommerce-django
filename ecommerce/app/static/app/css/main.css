@@ -188,14 +188,17 @@ section#products .product-list .product {
 
 section#products .product-list .product .img-container {
     border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 150px;
-    background: #9b9b9b;
+    background: #fff;
     overflow: hidden;
 }
 
 section#products .product-list .product .img-container img {
-    width: 100%;
+    width: 80%;
 
 }
 
@@ -420,6 +423,15 @@ section#products .product-list .product .p-data {
     position: relative;
     resize: none;
 
+}
+
+.credit-or-debit {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color:#c7c7c7;
+    font-size:.8rem;
 }
 
 
