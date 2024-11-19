@@ -42,12 +42,6 @@ def checkout(request):
             return JsonResponse({'message': 'Checkout realizado com sucesso'}, status=200)
 
 
-
-
-
-
-
-
         except Exception as e:
             print(f"Erro ao realizar checkout: {e}")
             return JsonResponse({'error': 'Erro ao realizar checkout'}, status=500)
