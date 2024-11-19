@@ -58,14 +58,17 @@
     async function addOrderItem(event) {
         let productId = event.target.id
         await addToCartFetch(productId)
-        
-        const itemAddedWarn = document.querySelector(".bottom-warn")
-        itemAddedWarn.style.opacity = 1
-        setTimeout(() => {
-            itemAddedWarn.style.opacity = 0
-        }, 1500)
-        
-
+        .then( response => {
+                const itemAddedWarn = document.querySelector(".bottom-warn")
+                itemAddedWarn.style.opacity = 1
+                setTimeout(() => {
+                    itemAddedWarn.style.opacity = 0
+                }, 1500)
+            })
+        .catch(error => {
+            alert("Erro ao adicionar item ao carrinho!");
+        })
+            
     }
 
 
