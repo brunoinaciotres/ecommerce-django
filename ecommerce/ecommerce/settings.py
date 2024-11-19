@@ -79,7 +79,7 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': 'database',
+        'NAME': 'ecommerce',
 
         'USER': 'postgres',
 
