@@ -98,12 +98,10 @@ function toBuy() {
         return
     }
 
-    console.log({card_number, owner_name, cvc, expires_at, method})
-    console.log({ street, number, complement, district, state, city });
 
     createUserPaymentCardAndAdress({
         card_number,
-        card_titular_name: owner_name, // Mapeia o nome correto
+        card_titular_name: owner_name,
         card_cvc: cvc,
         card_expiration: expires_at,
         card_method: method,
@@ -133,7 +131,7 @@ function getOrderItemTotalPriceElementId(event) {
 
     let productIntId = dividedString[1]
 
-    console.log("getOrderItemTotalPriceElementId(event), PRODUCT INT ID = " + productIntId)
+   
     return productIntId
 }
 async function increaseProductAmount(event) {
@@ -149,7 +147,7 @@ async function increaseProductAmount(event) {
         if (item.product_id == productIntId) {
             let newCounterValue = item.product_amount
             let productPrice = totalOrderItemPriceElement.dataset.individualProductPrice;
-            console.log(productPrice)
+           
             changeProductAmountCounterValue(newCounterValue, productIntId)
             changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId)
         }
@@ -161,7 +159,7 @@ async function increaseProductAmount(event) {
 
 async function decreaseProductAmount(event, newAmount) {
     let productIntId = getOrderItemTotalPriceElementId(event)
-    console.log(productIntId)
+   
     let totalOrderItemPriceElement = document.querySelector(`#order-item-total-price-${productIntId}`)
 
     const itemDecreased = await removeFromCartFetch(productIntId)
@@ -171,7 +169,7 @@ async function decreaseProductAmount(event, newAmount) {
             if (item.product_id == productIntId) {
                 let newCounterValue = item.product_amount
                 let productPrice = totalOrderItemPriceElement.dataset.individualProductPrice;
-                console.log(productPrice)
+                
                 changeProductAmountCounterValue(newCounterValue, productIntId)
 
                 let isDecrement = true
@@ -183,10 +181,10 @@ async function decreaseProductAmount(event, newAmount) {
 }
 
 function changeProductAmountCounterValue(newValue, productId,) {
-    console.log("OrderItemId = " + productId)
+    
     const counter = document.querySelector(`#product-amount-counter-${productId}`)
 
-    console.log(counter)
+    
     counter.innerText = newValue
 }
 
@@ -211,12 +209,12 @@ function changeOrderItemTotalPrice(productPrice, productAmount, productId, isDec
 }
 
 function changeCartTotalPrice(valueToIncrement, isDecrement) {
-    console.log(valueToIncrement)
+   
     const cartTotalPriceElement = document.querySelector("#cart-total-price")
     const cartTotalPriceValue = Number(cartTotalPriceElement.innerText.replace(',', '.').trim())
 
     let sum = isDecrement ? cartTotalPriceValue - valueToIncrement : cartTotalPriceValue + valueToIncrement
-    console.log("typeof sum = " + typeof sum)
+
 
     let formattedValue = sum.toLocaleString('pt-BR', {
         minimumFractionDigits: 2,
@@ -274,7 +272,7 @@ async function createUserPaymentCardAndAdress({
     adress_city
 }){
     try {
-        console.log("street value => " + adress_street)
+       
         const response = await fetch('/checkout', {
             method: "POST",
             mode: "cors",
@@ -297,7 +295,7 @@ async function createUserPaymentCardAndAdress({
         })
 
         const data = await response.json()
-        console.log(data)
+    
         return data
     } catch (error){
         console.error("Erro:", error);
