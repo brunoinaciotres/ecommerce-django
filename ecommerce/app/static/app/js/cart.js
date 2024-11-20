@@ -13,7 +13,6 @@ const creditOrDebitInputSign = document.querySelector(".credit-or-debit")
 
 document.addEventListener("cardAdded", () => {
     const cardData = event.detail
- 
     styleCardInputCheckout(cardData)
     toAbleBuyBtn()
 })
@@ -65,58 +64,102 @@ function styleAdressInputCheckout(adress) {
     editAdressButton.style.display = "block"
 }
 
-function updateCartItemsCountHeader(item){
+function updateCartItemsCountHeader(item) {
     let totalItemsCount = item.total_items_count
     const cartItemCounterElement = document.querySelector("#how-many-cart-itens-value")
     cartItemCounterElement.innerText = totalItemsCount
 
 }
 
-function toBuy(){
-    window.location.replace("/after_purchase");
+function toBuy() {
+ 
+    const card_number = document.querySelector("#card-number").value
+    const owner_name = document.querySelector("#card-name").value
+    const cvc = document.querySelector("#card-cvc").value
+    const expires_at = document.querySelector("#card-val").dataset.expiryDateFormatted
+    const method = document.querySelector('input[name="payment"]:checked').value
+
+   
+    const street = document.querySelector("#adress-street").value;
+    const number = document.querySelector("#adress-number").value;
+    const complement = document.querySelector("#adress-complement").value;
+    const district = document.querySelector("#adress-district").value;
+    const state = document.querySelector("#adress-state").value;
+    const city = document.querySelector("#adress-city").value;
+
+    
+    if (!(street && number && complement && district && state && city)) {
+        alert("Preencha todos os dados do endereço");
+        return;
+    }
+
+    if (!(card_number && owner_name && cvc && expires_at && method)) {
+        alert("Preencha todos os dados do cartão")
+        return
+    }
+
+    console.log({card_number, owner_name, cvc, expires_at, method})
+    console.log({ street, number, complement, district, state, city });
+
+    createUserPaymentCardAndAdress({
+        card_number,
+        card_titular_name: owner_name, // Mapeia o nome correto
+        card_cvc: cvc,
+        card_expiration: expires_at,
+        card_method: method,
+        adress_street: street,
+        adress_number: number,
+        adress_complement: complement,
+        adress_district: district,
+        adress_state: state,
+        adress_city: city
+    });
+
+
+    //   window.location.replace("/after_purchase");
 
 }
 
-// Increase and decrease Product Amount buttons values
-function getOrderItemTotalPriceElementId(event){
+
+function getOrderItemTotalPriceElementId(event) {
     let orderItemElementId = event.target.id
     let dividedString
-    if (orderItemElementId.startsWith("order-item-decrease-")){
+    if (orderItemElementId.startsWith("order-item-decrease-")) {
         dividedString = orderItemElementId.split("order-item-decrease-")
     }
-    if (orderItemElementId.startsWith("order-item-increase-")){
+    if (orderItemElementId.startsWith("order-item-increase-")) {
         dividedString = orderItemElementId.split("order-item-increase-")
     }
-   
+
     let productIntId = dividedString[1]
 
     console.log("getOrderItemTotalPriceElementId(event), PRODUCT INT ID = " + productIntId)
     return productIntId
 }
-async function increaseProductAmount(event){
+async function increaseProductAmount(event) {
     let productIntId = getOrderItemTotalPriceElementId(event)
 
     let totalOrderItemPriceElement = document.querySelector(`#order-item-total-price-${productIntId}`)
 
     const itemIncreased = await addToCartFetch(productIntId)
-    
+
     let orderItems = itemIncreased.order_items
-    
+
     orderItems.forEach(item => {
-        if (item.product_id == productIntId){
+        if (item.product_id == productIntId) {
             let newCounterValue = item.product_amount
             let productPrice = totalOrderItemPriceElement.dataset.individualProductPrice;
             console.log(productPrice)
             changeProductAmountCounterValue(newCounterValue, productIntId)
-            changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId )
+            changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId)
         }
     })
 
 
-    
+
 }
 
-async function decreaseProductAmount(event, newAmount){
+async function decreaseProductAmount(event, newAmount) {
     let productIntId = getOrderItemTotalPriceElementId(event)
     console.log(productIntId)
     let totalOrderItemPriceElement = document.querySelector(`#order-item-total-price-${productIntId}`)
@@ -125,21 +168,21 @@ async function decreaseProductAmount(event, newAmount){
 
     if (itemDecreased.order_items) {
         itemDecreased.order_items.forEach(item => {
-            if (item.product_id == productIntId){
+            if (item.product_id == productIntId) {
                 let newCounterValue = item.product_amount
                 let productPrice = totalOrderItemPriceElement.dataset.individualProductPrice;
                 console.log(productPrice)
                 changeProductAmountCounterValue(newCounterValue, productIntId)
 
                 let isDecrement = true
-                changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId, isDecrement )
+                changeOrderItemTotalPrice(productPrice, item.product_amount, productIntId, isDecrement)
             }
         })
     }
-    
+
 }
 
-function changeProductAmountCounterValue(newValue, productId,){
+function changeProductAmountCounterValue(newValue, productId,) {
     console.log("OrderItemId = " + productId)
     const counter = document.querySelector(`#product-amount-counter-${productId}`)
 
@@ -147,7 +190,7 @@ function changeProductAmountCounterValue(newValue, productId,){
     counter.innerText = newValue
 }
 
-function changeOrderItemTotalPrice(productPrice, productAmount, productId, isDecrement){
+function changeOrderItemTotalPrice(productPrice, productAmount, productId, isDecrement) {
     let productAmountNumber = Number(productAmount)
     let cleanedProductPriceNumber = Number(productPrice.replace(',', '.').trim())
     let newValue = productAmountNumber * cleanedProductPriceNumber
@@ -158,20 +201,20 @@ function changeOrderItemTotalPrice(productPrice, productAmount, productId, isDec
 
     const orderItemTotalPriceElement = document.querySelector(`#order-item-total-price-${productId}`)
     orderItemTotalPriceElement.innerText = formattedValue
-    if (isDecrement){
+    if (isDecrement) {
         changeCartTotalPrice(cleanedProductPriceNumber, isDecrement)
         return
     }
 
     changeCartTotalPrice(cleanedProductPriceNumber)
-    
+
 }
 
-function changeCartTotalPrice(valueToIncrement, isDecrement){
+function changeCartTotalPrice(valueToIncrement, isDecrement) {
     console.log(valueToIncrement)
     const cartTotalPriceElement = document.querySelector("#cart-total-price")
     const cartTotalPriceValue = Number(cartTotalPriceElement.innerText.replace(',', '.').trim())
-    
+
     let sum = isDecrement ? cartTotalPriceValue - valueToIncrement : cartTotalPriceValue + valueToIncrement
     console.log("typeof sum = " + typeof sum)
 
@@ -183,32 +226,83 @@ function changeCartTotalPrice(valueToIncrement, isDecrement){
 
 }
 
-// Interact with cart - fetchs
-
 async function addToCartFetch(productId) {
     const res = await fetch('/add_to_cart', {
         method: 'POST',
         mode: 'cors',
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
-                "product_id" : productId
-            })
-        
+            "product_id": productId
+        })
+
     })
     const item = await res.json()
     updateCartItemsCountHeader(item)
     return item
 }
 
-async function removeFromCartFetch(productId){
+async function removeFromCartFetch(productId) {
     const res = await fetch('/remove_from_cart', {
         method: 'POST',
         mode: 'cors',
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
-                "product_id" : productId
-            })
-        
+            "product_id": productId
+        })
+
     })
     const item = await res.json()
     updateCartItemsCountHeader(item)
     return item
 }
+
+async function createUserPaymentCardAndAdress({
+    card_number,
+    card_titular_name,
+    card_cvc,
+    card_expiration,
+    card_method,
+    adress_street,
+    adress_number,
+    adress_complement,
+    adress_district,
+    adress_state,
+    adress_city
+}){
+    try {
+        console.log("street value => " + adress_street)
+        const response = await fetch('/checkout', {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                card_number,
+                card_titular_name,
+                card_cvc,
+                card_expiration,
+                card_method,
+                adress_street,
+                adress_number,
+                adress_complement,
+                adress_district,
+                adress_state,
+                adress_city
+            })
+        })
+
+        const data = await response.json()
+        console.log(data)
+        return data
+    } catch (error){
+        console.error("Erro:", error);
+        throw error;
+    }
+   
+}
+

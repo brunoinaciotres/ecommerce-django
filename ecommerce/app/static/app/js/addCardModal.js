@@ -36,11 +36,19 @@ addPaymentBtn.addEventListener("click", () => {
         return
     }
 
+    let expiryDate =  document.getElementById('card-val').value.split("/")
+    let expiryDateYear = expiryDate[1]
+    let expiryDateMonth = expiryDate[0]
+    let expiryDateDay = "01"
+    let expiryDateFormatted = `20${expiryDateYear}-${expiryDateMonth}-${expiryDateDay}`
+    
+    cardValInput.dataset.expiryDateFormatted = expiryDateFormatted
+
     const cardData = {
         cardNumber: document.getElementById('card-number').value,
         cardName: document.getElementById('card-name').value,
         cvc: document.getElementById('card-cvc').value,
-        expiryDate: document.getElementById('card-val').value,
+        expiryDate: expiryDateFormatted,
         paymentMethod: document.querySelector('input[name="payment"]:checked').value 
     };
 
