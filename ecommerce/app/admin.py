@@ -20,7 +20,6 @@ class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ['get_total_price']
     
     def get_total_price(self, obj):
-        print(obj)
         return obj.get_total_price()
     
     get_total_price.short_description = 'Preço Total'

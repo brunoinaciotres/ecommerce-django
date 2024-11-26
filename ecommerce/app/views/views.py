@@ -33,4 +33,19 @@ def cart(request):
     })
 
 def after_purchase(request):
-    return render(request, "after_purchase.html")
+    session_id = request.session.session_key
+    order_items = OrderItem.objects.filter(user_session=session_id)
+    delivery_adress = User_Adress.objects.get(user_session=session_id)
+    total_each_item = [item.product_amount * item.product_price for item in order_items]
+    total_order_price = sum(total_each_item)
+    
+    print(f"TOTAL EACH ITEM LIST: {total_each_item}")
+    print(f"TOTAL : {total_order_price}")
+    
+    
+    return render(request, "after_purchase.html", {
+        "total_order_price" : total_order_price,
+        "order_items": order_items,
+        "delivery_adress": delivery_adress
+        
+    })

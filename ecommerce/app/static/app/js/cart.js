@@ -114,7 +114,7 @@ function toBuy() {
     });
 
 
-    //   window.location.replace("/after_purchase");
+    window.location.replace("/after_purchase");
 
 }
 

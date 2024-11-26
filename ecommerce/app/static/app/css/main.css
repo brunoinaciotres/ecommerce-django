@@ -112,6 +112,20 @@ section {
     width: 100%;
 }
 
+
+.mr-1 {
+    margin-right: 1rem;
+}
+
+.my-1 {
+    margin: 1rem 0; 
+
+}
+
+.my-2 {
+    margin: 2rem 0;
+}
+
 .gap-1 {
     gap: 10px;
 }
@@ -644,6 +658,38 @@ input:focus {
 
 .counter-btn.decrease svg, .counter-btn.increase svg {
     pointer-events: none;
+}
+
+section.after-purchase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.after-purchase-card {
+    width:90%;
+    background-color: #181818;
+    padding:3rem;
+    border-radius: 15px;
+
+}
+
+.after-purchase-card h2 {
+    font-weight: 400;
+}
+
+.itens-list-title {
+    font-weight: bold;
+}
+
+.order-item-after-purchase{
+    margin-left: 3rem;
+    list-style:disc
+}
+
+.total-price-after-purchase {
+    font-weight: bold;
 }
 
 

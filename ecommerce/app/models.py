@@ -25,7 +25,7 @@ class Order(models.Model):
     
     def get_total_price(self):
         total = sum(item.product.price * item.product_amount for item in self.order_items.all())
-        print(self.order_items.all())
+
         return total
 
     def __str__(self):
@@ -73,6 +73,14 @@ class User_Adress(models.Model):
     district = models.CharField(max_length=200, null=False, blank=False)
     state = models.CharField(max_length=150, null=False, blank=False)
     city = models.CharField(max_length=150, null=False, blank=False)
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['street', 'number', 'complement', 'district', 'state', 'city'],
+                name='unique_address_constraint'
+            )
+        ]
     
 
 class Rating(models.Model):
