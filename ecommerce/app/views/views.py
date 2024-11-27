@@ -35,7 +35,8 @@ def cart(request):
 def after_purchase(request):
     session_id = request.session.session_key
     order_items = OrderItem.objects.filter(user_session=session_id)
-    delivery_adress = User_Adress.objects.get(user_session=session_id)
+    delivery_adress = User_Adress.objects.filter(user_session=session_id).order_by('-created_at').first()
+
     total_each_item = [item.product_amount * item.product_price for item in order_items]
     total_order_price = sum(total_each_item)
     

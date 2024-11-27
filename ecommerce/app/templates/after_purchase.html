@@ -1,29 +1,34 @@
 {% extends 'layout.html' %}
-
+{%load static%}
 {% block body %}
-<section class="after-purchase">
-    <div class="after-purchase-card">
-        <h1 class="color-blue">Pedido Confirmado!</h1>
-        <h2 class="color-white">Seu pedido chegará em 5 dias.</h2>
-
-        <p class="color-white itens-list-title my-1">Itens do pedido:</p>
-        <ul class="items-list mb-1">
-            {%for item in order_items%}
-            <li class="color-white order-item-after-purchase">{{item.product.name}} - {{item.product_amount}} un</li>
-            {%endfor%}
-
-        </ul>
-        <div class="d-flex align-center my-1">
-            <p class="color-white itens-list-title mr-1">Frete:</p>
-            <p class="color-white">Grátis</p>
+<section class="after-purchase mt-2">
+    <div class="after-purchase-card d-flex justify-between">
+        <div class="divider">
+            <h1 class="color-blue">Pedido Confirmado!</h1>
+            <h2 class="color-white">Seu pedido chegará em 5 dias.</h2>
+    
+            <p class="color-white itens-list-title my-1">Itens do pedido:</p>
+            <ul class="items-list mb-1">
+                {%for item in order_items%}
+                <li class="color-white order-item-after-purchase">{{item.product.name}} - {{item.product_amount}} un</li>
+                {%endfor%}
+    
+            </ul>
+            <div class="d-flex align-center my-1">
+                <p class="color-white itens-list-title mr-1">Frete:</p>
+                <p class="color-white">Grátis</p>
+            </div>
+    
+            <p class="my-1 color-white"> <span class="total-price-after-purchase">Total</span>: R${{total_order_price}}</p>
+    
+            <p class="color-white itens-list-title my-1">Endereço de Entrega:</p>
+            <p class="color-white">Rua {{delivery_adress.street}}, {{delivery_adress.number}} / {{delivery_adress.complement}} - {{delivery_adress.district}}</p>
+            <p class="color-white">{{delivery_adress.city}}, {{delivery_adress.state}}</p>
         </div>
-
-        <p class="my-1 color-white"> <span class="total-price-after-purchase">Total</span>: R${{total_order_price}}</p>
-
-        <p class="color-white itens-list-title my-1">Endereço de Entrega:</p>
-        <p class="color-white">Rua {{delivery_adress.street}}, {{delivery_adress.number}} / {{delivery_adress.complement}} - {{delivery_adress.district}}</p>
-        <p class="color-white">{{delivery_adress.city}}, {{delivery_adress.state}}</p>
-
+       
+        <div class="divider d-flex justify-center">
+            <img id="after-purchase-svg" src="{%static 'ill.svg' %}" alt="">
+        </div>
     </div>
 
 

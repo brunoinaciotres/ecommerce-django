@@ -73,7 +73,7 @@ class User_Adress(models.Model):
     district = models.CharField(max_length=200, null=False, blank=False)
     state = models.CharField(max_length=150, null=False, blank=False)
     city = models.CharField(max_length=150, null=False, blank=False)
-    
+    created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         constraints = [
             models.UniqueConstraint(

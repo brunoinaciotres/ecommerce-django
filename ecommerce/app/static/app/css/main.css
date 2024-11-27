@@ -112,7 +112,9 @@ section {
     width: 100%;
 }
 
-
+.mt-2 {
+    margin-top: 7rem !important;
+}
 .mr-1 {
     margin-right: 1rem;
 }
@@ -672,6 +674,7 @@ section.after-purchase {
     background-color: #181818;
     padding:3rem;
     border-radius: 15px;
+    margin-bottom:2rem;
 
 }
 
@@ -690,6 +693,10 @@ section.after-purchase {
 
 .total-price-after-purchase {
     font-weight: bold;
+}
+
+#after-purchase-svg {
+    width:60%;
 }
 
 
