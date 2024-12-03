@@ -3,8 +3,8 @@ from ..models import *
 # Create your views here.
 
 def index(request):
-    # request.session['order_items'] = []
-    # request.session['total_items_count'] = 0
+    request.session['order_items'] = []
+    request.session['total_items_count'] = 0
     if 'order_items' not in request.session:
         request.session['order_items'] = []
     return render(request, "index.html", {

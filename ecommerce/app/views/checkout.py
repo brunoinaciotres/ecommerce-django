@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 import json
-from ..models import User_Adress, User_Payment_Card
+from ..models import User_Adress, User_Payment_Card, OrderItem, Order
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
@@ -39,6 +39,18 @@ def checkout(request):
                 method=card_method,
                 user_session = user_session
             )
+            
+            order = Order.objects.create()
+            order_items = OrderItem.objects.filter(user_session=user_session)
+            for item in order_items:
+                item.order_id = order
+                item.status = "Fechado"
+                item.save()
+                
+            request.session['order_items'] = []
+            request.session['total_items_count'] = 0
+            
+            request.session.modified = True
             
             return JsonResponse({'message': 'Checkout realizado com sucesso'}, status=201)
 

@@ -98,23 +98,34 @@ function toBuy() {
         return
     }
 
+    try {
+        const loading = document.querySelector(".loading-checkout")
+        loading.style.opacity = 1
+        loading.style.pointerEvents = "unset"
+        loading.style.top = 0
+        buyButton.innerText = ""
+        createUserPaymentCardAndAdress({
+            card_number,
+            card_titular_name: owner_name,
+            card_cvc: cvc,
+            card_expiration: expires_at,
+            card_method: method,
+            adress_street: street,
+            adress_number: number,
+            adress_complement: complement,
+            adress_district: district,
+            adress_state: state,
+            adress_city: city
+        });
+    } catch (e) {
+        console.log("Erro ao realizar cadastro de cartão e endereço. Erro: "  + e)
 
-    createUserPaymentCardAndAdress({
-        card_number,
-        card_titular_name: owner_name,
-        card_cvc: cvc,
-        card_expiration: expires_at,
-        card_method: method,
-        adress_street: street,
-        adress_number: number,
-        adress_complement: complement,
-        adress_district: district,
-        adress_state: state,
-        adress_city: city
-    });
+    }
+    finally {
+            window.location.replace("/after_purchase");
+    }
 
 
-    window.location.replace("/after_purchase");
 
 }
 

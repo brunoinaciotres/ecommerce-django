@@ -108,6 +108,25 @@ section {
     justify-content: center;
 }
 
+.spinner {
+    width: 30px; /* Tamanho do spinner */
+    height: 30px;
+    border: 5px solid transparent; /* Torna o círculo transparente */
+    border-top: 5px solid #fff; /* Cor principal do spinner */
+    border-bottom: 5px solid #fff; /* Outra borda para contraste */
+    border-radius: 50%; /* Deixa o spinner redondo */
+    animation: spin 1s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
 .w-100 {
     width: 100%;
 }
@@ -426,6 +445,7 @@ section#products .product-list .product .p-data {
 .adress,
 .buy {
     width: 100%;
+    position: relative;
 }
 
 
@@ -503,6 +523,7 @@ section#products .product-list .product .p-data {
     justify-content: center;
     gap: 10px;
     cursor: pointer;
+    height:55px;
 }
 
 .buy-button:hover {
@@ -660,6 +681,23 @@ input:focus {
 
 .counter-btn.decrease svg, .counter-btn.increase svg {
     pointer-events: none;
+}
+
+.loading-checkout {
+    position: absolute;
+    top:-10px;
+    left:0;
+    bottom:0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+    color:#fff;
+    transition: all ease .5s;
+    opacity:0;
+    pointer-events: none;
+    padding:1rem;
 }
 
 section.after-purchase {
